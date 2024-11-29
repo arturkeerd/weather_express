@@ -1,0 +1,45 @@
+<%- include('header') %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto text-center bg-primary mt-5 p-5 rounded">
+            <% if(error === null){ %>
+            <h1 id="location">
+                <%= city %>
+            </h1>
+            <ul class="list-group mt-3">
+                <li class="list-group-item" id="description">
+                    <%= description %>
+                </li>
+                <li class="list-group-item" id="temp">
+                    <%= temp %>
+                </li>
+            </ul>
+            <h1 class="mt-3">Change city</h1>
+            <form 
+            id="change-city"
+            method="post"
+            action="/"
+            >
+                <div class="form-group mb-3">
+                    <label for="city-name">City</label>
+                    <input 
+                    type="text" 
+                    id="city-name" 
+                    class="form-control"
+                    name="cityname"
+                    >
+                </div>
+                <input type="submit" class="btn btn-light" value="Save changes">
+            </form>
+            <% } else { %>
+            <div class="alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <a href="/" class="btn btn-secondary text-white" role="button">
+            Try again
+        </a>
+    <% } %>
+        </div>
+    </div>
+</div>
+<%- include('footer') %>
