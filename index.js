@@ -1,4 +1,5 @@
 const { rejects } = require('assert')
+const { render } = require('ejs')
 const express = require('express')
 const path = require('path')
 
@@ -45,6 +46,14 @@ app.all('/', (req, res) => {
     if (req.method == 'GET'){
         city ='Tartu'
     } else if (req.method =='POST'){
+        let error = req.body.cityname.trim().length == 0 ?'Yout input is empty' : null
+        if (error !== 0) {
+        res.render('index', {
+            error:error
+        })
+    }
+        return
+     } else {
         city = req.body.cityname
     }
     getWeatherData(city)
